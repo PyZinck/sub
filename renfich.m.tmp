@@ -1,0 +1,48 @@
+
+function renfich(ruta, c)
+
+%#ok<*FXSET>
+%#ok<*AGROW>
+
+
+% ruta = 'C:\Users\DMCT\Downloads\WinPy';
+
+% ruta = 'C:\Users\DMCT\Downloads\pychjre';
+% ruta = 'C:\Users\DMCT\Downloads\subir\R';
+% ruta = 'C:\Users\DMCT\Downloads\RStudio';
+
+ff = dirsi(ruta);
+
+tic
+for f0 = ff'
+    f0 = char(f0);
+    [~, nm, e] = fileparts(f0);
+    if c == 1
+        f1 = strcat(nm, e, '.tmp');
+    elseif c == 2
+        f1 = nm;
+    end
+    system(['ren  "', f0, '" "', f1,'"']);
+end
+toc
+
+
+    function fichero = dirsi(ruta)
+        if ruta(end) == '\'
+            ruta(end) = [];
+        end
+        
+        d = dir(ruta);
+        fichero = {};
+        for n = {d.name}
+            f = char(strcat(ruta, '\', n));
+            if ismember(n, {'.', '..'})
+                continue
+            elseif isdir(f)
+                fichero = [fichero; dirsi(f)];
+            else
+                fichero = [fichero; f];
+            end
+        end
+    end
+end
