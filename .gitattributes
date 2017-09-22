@@ -1,2 +1,0 @@
-pychjre.zip filter=lfs diff=lfs merge=lfs -text
-RStudio.zip filter=lfs diff=lfs merge=lfs -text
