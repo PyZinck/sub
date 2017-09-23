@@ -1,0 +1,43 @@
+function renorig(ruta)
+
+if ruta(end) == '\'
+    ruta(end) = [];
+end
+
+fid = fopen([ruta, '\f.45454']);
+
+f = textscan(fid, '%s%s%s', 'Delimiter', '|');
+
+
+fid = fopen('C:\Users\DMCT\Downloads\bitácora.txt', 'w+');
+
+tic
+for i = 1:size(f{1}, 1)
+    
+    f0 = [ruta, f{1}{i}, f{3}{i}];
+    
+    ini = strfind(f0, '\');  
+    ini = ini(end) + 1;
+    
+    fin = strfind(f0, '.');
+    fin = fin(end) - 1;
+    
+    n = f0(ini:fin);
+    
+    
+    f1 = [n, f{2}{i}];
+    
+    cmd = ['ren  "', f0, '" "', f1,'"'];
+    
+    [~, info] = system(cmd);
+    
+    if isempty(info)
+        s = ['Todo maravillosillo: "', cmd, '"'];
+    else
+        s = ['Un problemilla: "', cmd, '"; ', regexprep(info, '\n', '')];
+    end
+    fprintf(fid, '%s\n', s);
+end
+fclose(fid);
+toc
+
