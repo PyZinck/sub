@@ -1,2 +1,4 @@
 WinPy.zip filter=lfs diff=lfs merge=lfs -text
 pych.zip filter=lfs diff=lfs merge=lfs -text
+R.zip filter=lfs diff=lfs merge=lfs -text
+winp.zip filter=lfs diff=lfs merge=lfs -text
